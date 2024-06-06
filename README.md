@@ -1,7 +1,7 @@
 # Odds API Wrapper
 A convenient API wrapper for the Odds API, designed for Composer environments such as Laravel.
 
-# About "The Odds API"
+## About "The Odds API"
 [The Odds API](https://the-odds-api.com/) is simple & well-documented, allowing for fast, low-cost integration. It covers over 70 sports and over 40 bookmakers - with a continuing expanding offering. The Odds API is an Australian company based in melbourne since 2017.
 
 ## So why make a wrapper
