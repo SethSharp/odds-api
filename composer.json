@@ -1,0 +1,19 @@
+{
+    "name": "sethsharp/odds-api",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SethSharp\\OddsApi\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Seth Sharp",
+            "homepage": "https://www.sethsharpportfolio.com/",
+            "role": "Maintainer, Developer"
+        }
+    ],
+    "homepage": "https://github.com/SethSharp/odds-api",
+    "require": {}
+}
