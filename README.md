@@ -9,3 +9,7 @@ A wrapper simplifies the usage and implementation of powerful APIs like "The Odd
 
 # Contribution Guide
 This is an open-source project, and contributions are welcome! Whether you want to add new features, fix bugs, or improve documentation, your help is appreciated. This package aims to ease the development of personal projects and demonstrate best practices in creating an API wrapper. Submit your contributions for review, and let's build something great together.
+
+## Credits
+- [Seth Sharp](https://github.com/SethSharp)
+- [All Contributors](https://github.com/SethSharp/odds-api/graphs/contributors)
