@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'API_KEY' => env('ODDS_API_KEY')
+    'secret' => env('ODDS_API_KEY'),
+    'version' => 'v4'
 ];

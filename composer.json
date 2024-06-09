@@ -1,6 +1,5 @@
 {
     "name": "sethsharp/odds-api",
-    "type": "composer-plugin",
     "homepage": "https://github.com/SethSharp/odds-api",
     "license": "MIT",
     "autoload": {

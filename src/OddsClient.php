@@ -11,7 +11,7 @@ class OddsClient
 {
     private $client;
     private $apiKey;
-    private $apiEndpoint = 'https://api.the-odds-api.com/v4';
+    private $apiEndpoint = 'https://api.the-odds-api.com';
 
     protected $requestsUsed = null;
     protected $requestsRemaining  = null;
@@ -32,7 +32,7 @@ class OddsClient
         ]);
     }
 
-    protected function getApiEndpoint(): string
+    public function getApiEndpoint(): string
     {
         return $this->apiEndpoint;
     }
@@ -43,7 +43,7 @@ class OddsClient
         $params['apiKey'] = $this->apiKey;
 
         try {
-            return $this->client->get($endpoint, [
+            return $this->client->get('/' . config('odds-api.version') . $endpoint, [
                 'query' => $params
             ]);
         } catch (RequestException $e) {
@@ -51,7 +51,7 @@ class OddsClient
         }
     }
 
-    protected function getRequestsRemaining(): string
+    public function getRequestsRemaining(): string
     {
         if ($this->requestsRemaining) return $this->requestsRemaining;
 
@@ -59,7 +59,6 @@ class OddsClient
         $response =  $this->get('/sports');
         $header = $response->getHeader(HeadersEnum::REQUESTS_REMAINING_HEADER);
 
-        // todo: verify this
         $value =  $header[0] ?? null;
 
         if (is_null($value)) {
@@ -71,7 +70,7 @@ class OddsClient
         return $this->requestsRemaining;
     }
 
-    protected function getRequestsUsed(): string
+    public function getRequestsUsed(): string
     {
         if ($this->requestsUsed) return $this->requestsUsed;
 
