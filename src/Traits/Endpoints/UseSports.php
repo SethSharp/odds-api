@@ -8,15 +8,13 @@ trait UseSports
 {
     use UseValidatesParams;
 
+    private array $allowedParameters = [
+        'all'
+    ];
+
     public function getSports($params = [])
     {
-        // todo: possibly a better way to define this per endpoint?
-        // some endpoints have the same params (can we abstract each param away?
-        $allowedParams = [
-            'all' => 'boolean'
-        ];
-
-        $this->validateParams($params, $allowedParams);
+        $this->validateParams($params, $this->allowedParameters);
 
         return $this->decodeResponse($this->get('/sports', $params));
     }

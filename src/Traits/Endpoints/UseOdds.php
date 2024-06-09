@@ -9,16 +9,15 @@ trait UseOdds
 {
     use UseValidatesParams;
 
+    public array $allowedParameters = [
+        'regions' => '',
+        'markets' => ''
+    ];
+
     public function getOddsForSport(SportsEnum $sport, $region)
     {
         // todo: possibly a better way to define this per endpoint?
         // some endpoints have the same params (can we abstract each param away?
-        $allowedParams = [
-            'sport' => SportsEnum::class,
-//            'regions' => '',
-//            'marktets' => ''
-        ];
-
         if (is_array($region)) {
             $region = implode('', $region);
         }
@@ -28,7 +27,7 @@ trait UseOdds
         ];
 
 
-//        $this->validateParams($params, $allowedParams);
+        $this->validateParams($params, $this->allowedParameters);
 
         return $this->decodeResponse($this->get("/sports/$sport->value/odds", $params));
     }

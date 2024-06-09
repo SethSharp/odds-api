@@ -4,10 +4,6 @@ namespace SethSharp\OddsApi\Traits;
 
 trait UseValidatesParams
 {
-    // todo: Have some sort of array which defines validation per type of param?..
-    // sport - must be in SportsEnum...
-    // Things like this to avoid API errors rather a elegant way...
-
     protected function validateParams(array $params, array $allowedParams): void
     {
         foreach ($params as $key => $value) {
@@ -15,9 +11,23 @@ trait UseValidatesParams
                 throw new \InvalidArgumentException("Invalid parameter: $key");
             }
 
-            if (gettype($value) !== $allowedParams[$key]) {
+            // validates param
+            if (! $this->{$key}($value)) {
                 throw new \InvalidArgumentException("Invalid type for parameter: $key. Expected {$allowedParams[$key]}.");
             }
         }
+    }
+
+    private function regions($regions): bool
+    {
+        // todo: add all valid markets, add into a config or enum?...
+
+        // todo: handle array and single value
+        return in_array($regions, ['au', 'us', 'uk']);
+    }
+
+    private function markets($markets)
+    {
+
     }
 }
