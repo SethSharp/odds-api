@@ -4,17 +4,20 @@ namespace SethSharp\OddsApi;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use SethSharp\OddsApi\Enums\HeadersEnum;
 use GuzzleHttp\Exception\RequestException;
+use SethSharp\OddsApi\Traits\UseHandleHeaders;
+use SethSharp\OddsApi\Traits\Endpoints\UseOdds;
+use SethSharp\OddsApi\Traits\Endpoints\UseSports;
 
 class OddsClient
 {
-    private $client;
-    private $apiKey;
-    private $apiEndpoint = 'https://api.the-odds-api.com';
+    use UseOdds;
+    use UseSports;
+    use UseHandleHeaders;
 
-    protected $requestsUsed = null;
-    protected $requestsRemaining  = null;
+    private Client $client;
+    private string $apiKey;
+    private string $apiEndpoint = 'https://api.the-odds-api.com';
 
     public function __construct(string $apiKey, $apiEndpoint = null)
     {
@@ -51,74 +54,8 @@ class OddsClient
         }
     }
 
-    public function getRequestsRemaining(): string
-    {
-        if ($this->requestsRemaining) return $this->requestsRemaining;
-
-        // sports endpoint does not cost quota
-        $response =  $this->get('/sports');
-        $header = $response->getHeader(HeadersEnum::REQUESTS_REMAINING_HEADER);
-
-        $value =  $header[0] ?? null;
-
-        if (is_null($value)) {
-            return 'Failed to fetch remaining requests.';
-        }
-
-        $this->requestsRemaining = $value;
-
-        return $this->requestsRemaining;
-    }
-
-    public function getRequestsUsed(): string
-    {
-        if ($this->requestsUsed) return $this->requestsUsed;
-
-        // sports endpoint does not cost quota
-        $response =  $this->get('/sports');
-        $header = $response->getHeader(HeadersEnum::REQUESTS_USED);
-
-        // todo: verify this
-        $value =  $header[0] ?? null;
-
-        if (is_null($value)) {
-            return 'Failed to fetch requests used.';
-        }
-
-        $this->requestsUsed = $value;
-
-        return $this->requestsUsed;
-    }
-
     protected function decodeResponse($response)
     {
         return json_decode($response->getBody(), true);
-    }
-
-    // todo: write tests for this function
-    protected function validateParams(array $params, array $allowedParams): void
-    {
-        foreach ($params as $key => $value) {
-            if (!array_key_exists($key, $allowedParams)) {
-                throw new \InvalidArgumentException("Invalid parameter: $key");
-            }
-
-            if (gettype($value) !== $allowedParams[$key]) {
-                throw new \InvalidArgumentException("Invalid type for parameter: $key. Expected {$allowedParams[$key]}.");
-            }
-        }
-    }
-
-    public function getSports($params = [])
-    {
-        // todo: possibly a better way to define this per endpoint?
-        // some endpoints have the same params (can we abstract each param away?
-        $allowedParams = [
-            'all' => 'boolean'
-        ];
-
-        $this->validateParams($params, $allowedParams);
-
-        return $this->decodeResponse($this->get('/sports'), $params);
     }
 }

@@ -13,3 +13,4 @@ This is an open-source project, and contributions are welcome! Whether you want 
 ## Credits
 - [Seth Sharp](https://github.com/SethSharp)
 - [All Contributors](https://github.com/SethSharp/odds-api/graphs/contributors)
+    
