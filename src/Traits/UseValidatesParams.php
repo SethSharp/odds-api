@@ -11,20 +11,7 @@ trait UseValidatesParams
                 throw new \InvalidArgumentException("Missing required parameter: $param");
             }
 
-            $validationMethod = 'validate' . ucfirst($param);
-            if (method_exists($this, $validationMethod)) {
-                $this->$validationMethod($params[$param]);
-            }
-        }
-    }
-
-    protected function validateRegions(array $regions)
-    {
-        $allowedRegions = ['au', 'us', 'uk', 'us2', 'eu'];
-        foreach ($regions as $region) {
-            if (!in_array($region, $allowedRegions)) {
-                throw new \InvalidArgumentException("Invalid region: $region");
-            }
+            // todo: Eventually validate some params before hitting api
         }
     }
 }
