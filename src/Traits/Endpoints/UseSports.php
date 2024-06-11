@@ -8,13 +8,13 @@ trait UseSports
 {
     use UseValidatesParams;
 
-    private array $allowedParameters = [
-        'all'
-    ];
-
     public function getSports($params = [])
     {
-        $this->validateParams($params, $this->allowedParameters);
+        $requiredParams = [
+            'all'
+        ];
+
+        $this->validateParams($params, $requiredParams);
 
         return $this->decodeResponse($this->get('/sports', $params));
     }

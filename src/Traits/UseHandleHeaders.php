@@ -6,8 +6,8 @@ use SethSharp\OddsApi\Enums\HeadersEnum;
 
 trait UseHandleHeaders
 {
-    protected $requestsUsed = null;
-    protected $requestsRemaining  = null;
+    protected $requestsUsed;
+    protected $requestsRemaining;
 
     public function getRequestsRemaining(): string
     {

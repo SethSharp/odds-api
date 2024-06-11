@@ -4,30 +4,27 @@ namespace SethSharp\OddsApi\Traits;
 
 trait UseValidatesParams
 {
-    protected function validateParams(array $params, array $allowedParams): void
+    protected function validateParams(array $params, array $requiredParams): void
     {
-        foreach ($params as $key => $value) {
-            if (!array_key_exists($key, $allowedParams)) {
-                throw new \InvalidArgumentException("Invalid parameter: $key");
+        foreach ($requiredParams as $param) {
+            if (!array_key_exists($param, $params)) {
+                throw new \InvalidArgumentException("Missing required parameter: $param");
             }
 
-            // validates param
-            if (! $this->{$key}($value)) {
-                throw new \InvalidArgumentException("Invalid type for parameter: $key. Expected {$allowedParams[$key]}.");
+            $validationMethod = 'validate' . ucfirst($param);
+            if (method_exists($this, $validationMethod)) {
+                $this->$validationMethod($params[$param]);
             }
         }
     }
 
-    private function regions($regions): bool
+    protected function validateRegions(array $regions)
     {
-        // todo: add all valid markets, add into a config or enum?...
-
-        // todo: handle array and single value
-        return in_array($regions, ['au', 'us', 'uk']);
-    }
-
-    private function markets($markets)
-    {
-
+        $allowedRegions = ['au', 'us', 'uk', 'us2', 'eu'];
+        foreach ($regions as $region) {
+            if (!in_array($region, $allowedRegions)) {
+                throw new \InvalidArgumentException("Invalid region: $region");
+            }
+        }
     }
 }
