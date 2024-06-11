@@ -10,11 +10,7 @@ trait UseSports
 
     public function getSports($params = [])
     {
-        $requiredParams = [
-            'all'
-        ];
-
-        $this->validateParams($params, $requiredParams);
+        $this->validateParams($params, []);
 
         return $this->decodeResponse($this->get('/sports', $params));
     }
