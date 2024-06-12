@@ -1,4 +1,7 @@
 # Odds API Wrapper
+
+[![Tests](https://github.com/SethSharp/odds-api/actions/workflows/testing.yml/badge.svg)](https://github.com/SethSharp/odds-api/actions/workflows/testing.yml)
+
 A convenient API wrapper for the Odds API, designed for Composer environments such as Laravel.
 
 ## About "The Odds API"
