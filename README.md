@@ -3,6 +3,9 @@
 # Odds API Wrapper
 
 [![Tests](https://github.com/SethSharp/odds-api/actions/workflows/testing.yml/badge.svg)](https://github.com/SethSharp/odds-api/actions/workflows/testing.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sethsharp/odds-api.svg?style=flat-square)](https://packagist.org/packages/sethsharp/odds-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/sethsharp/odds-api.svg?style=flat-square)](https://packagist.org/packages/sethsharp/odds-api)
+
 
 A convenient API wrapper for the Odds API, designed for Composer environments such as Laravel.
 
