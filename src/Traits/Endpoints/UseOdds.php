@@ -15,4 +15,11 @@ trait UseOdds
 
         return $this->decodeResponse($this->get("/sports/$sport->value/odds", $params));
     }
+
+    public function getOddsForEvent(SportsEnum $sport, string $event, $params)
+    {
+        $this->validateParams($params, requiredParams: ['regions']);
+
+        return $this->decodeResponse($this->get("/sports/{$sport}/events/{$event}/odds"));
+    }
 }
