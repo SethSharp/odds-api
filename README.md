@@ -18,6 +18,18 @@ A wrapper simplifies the usage and implementation of powerful APIs like "The Odd
 # Contribution Guide
 This is an open-source project, so contributions are welcome! Whether you want to add new features, fix bugs, or improve documentation, your help is appreciated. Submit your PR for review and I will review them as soon as possible.
 
+# Steps for Installation
+### Composer
+```bash
+composer require sethsharp/odds-api
+```
+
+### Publish Config file
+This file contains some essential information the Client requires to make successful requests
+```bash
+php artisan vendor:publish --tag="odds-api-config"
+```
+
 ## Credits
 - [Seth Sharp](https://github.com/SethSharp)
 - [All Contributors](https://github.com/SethSharp/odds-api/graphs/contributors)
