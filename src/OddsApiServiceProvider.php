@@ -4,7 +4,7 @@ namespace SethSharp\OddsApi;
 
 use Illuminate\Support\ServiceProvider;
 
-class OddsApiProvider extends ServiceProvider
+class OddsApiServiceProvider extends ServiceProvider
 {
     public function boot()
     {
