@@ -20,6 +20,6 @@ trait UseOdds
     {
         $this->validateParams($params, requiredParams: ['regions']);
 
-        return $this->decodeResponse($this->get("/sports/{$sport}/events/{$event}/odds"));
+        return $this->decodeResponse($this->get("/sports/{$sport->value}/events/{$event}/odds"));
     }
 }

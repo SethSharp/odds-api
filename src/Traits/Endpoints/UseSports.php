@@ -18,6 +18,6 @@ trait UseSports
 
     public function getScoresForSport(SportsEnum $sport)
     {
-        return $this->decodeResponse($this->get("/sports/{$sport}/scores"));
+        return $this->decodeResponse($this->get("/sports/{$sport->value}/scores"));
     }
 }
