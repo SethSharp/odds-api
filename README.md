@@ -1,5 +1,3 @@
-> In development
-
 # Odds API Wrapper
 
 [![Tests](https://github.com/SethSharp/odds-api/actions/workflows/testing.yml/badge.svg)](https://github.com/SethSharp/odds-api/actions/workflows/testing.yml)
@@ -71,7 +69,7 @@ public function __invoke(OddsClient $client): Response
 }
 ```
 
-**Additional**
+**Additional:**
 When constructing the Client, it will have some default parameters
 ```php
 $this->params = [
@@ -83,7 +81,10 @@ $this->params = [
 This avoids having to define these on each request, but they can be overwritten with their corresponding class functions ie;
 `setRegions('au')`
 
-Also if this API ever becomes outdated for a small period of time, and you require to use new parameters, you can utilise
+To help manage your quota, there are helpers that you can call to return the number of requests used and remaining. Checkout the `UseHandleHeaders` trait, which
+can be called on any `OddsClient` instant.
+
+Also, if this API ever becomes outdated for a small period of time, and you require to use new parameters, you can utilise
 the `addParams()` function, which accepts an array where you can pass any new parameters.
 
 ## Credits
