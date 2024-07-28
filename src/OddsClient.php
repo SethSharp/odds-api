@@ -72,6 +72,15 @@ class OddsClient
      * @param SportsEnum $sport
      * @return Response
      */
+    public function getOddsForSport(SportsEnum $sport): Response
+    {
+        return $this->get("/sports/$sport->value/odds");
+    }
+
+    /**
+     * @param SportsEnum $sport
+     * @return Response
+     */
     public function getScoresForSport(SportsEnum $sport): Response
     {
         return $this->get("/sports/{$sport->value}/scores");
@@ -81,9 +90,9 @@ class OddsClient
      * @param SportsEnum $sport
      * @return Response
      */
-    public function getOddsForSport(SportsEnum $sport): Response
+    public function getEventsForSport(SportsEnum $sport): Response
     {
-        return $this->get("/sports/$sport->value/odds");
+        return $this->get("/sports/{$sport->name}/events");
     }
 
     /**
