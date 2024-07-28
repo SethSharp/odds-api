@@ -93,7 +93,7 @@ class OddsClient
      */
     public function getEventsForSport(SportsEnum $sport): Response
     {
-        return $this->get("/sports/{$sport->name}/events");
+        return $this->get("/sports/{$sport->value}/events");
     }
 
     /**
