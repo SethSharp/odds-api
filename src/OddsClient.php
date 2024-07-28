@@ -2,6 +2,7 @@
 
 namespace SethSharp\OddsApi;
 
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use SethSharp\OddsApi\Enums\SportsEnum;
@@ -193,9 +194,13 @@ class OddsClient
      * @param string $time
      * @return $this
      */
-    public function commenceTimeFrom(string $time): self
+    public function commenceTimeFrom(string $time, ?bool $isIsoFormat = false): self
     {
-        $this->params['commenceTimeFrom'] = $time;
+        if ($isIsoFormat) {
+            $this->params['commenceTimeFrom'] = $time;
+        } else {
+            $this->params['commenceTimeFrom'] = $this->convertStringToIso($time);
+        }
 
         return $this;
     }
@@ -206,9 +211,13 @@ class OddsClient
      * @param string $time
      * @return $this
      */
-    public function commenceTimeTo(string $time): self
+    public function commenceTimeTo(string $time, ?bool $isIsoFormat = false): self
     {
-        $this->params['commenceTimeTo'] = $time;
+        if ($isIsoFormat) {
+            $this->params['commenceTimeTo'] = $time;
+        } else {
+            $this->params['commenceTimeTo'] = $this->convertStringToIso($time);
+        }
 
         return $this;
     }
@@ -224,5 +233,12 @@ class OddsClient
         $this->params = array_merge_recursive($this->params, $params);
 
         return $this;
+    }
+
+    public function convertStringToIso(string $date): string
+    {
+        $date = Carbon::parse($date);
+
+        return $date->toIso8601String();
     }
 }
