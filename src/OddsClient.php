@@ -237,8 +237,6 @@ class OddsClient
 
     public function convertStringToIso(string $date): string
     {
-        $date = Carbon::parse($date);
-
-        return $date->toIso8601String();
+        return Carbon::parse($date)->format('Y-m-d\TH:i:s\Z');
     }
 }
