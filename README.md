@@ -34,7 +34,8 @@ php artisan vendor:publish --tag="odds-api-config"
 ```
 
 ### Example Usages
-You can simply create a new Client, passing in your api key and thats it!
+You can simply create a new Client, passing in your api key and that's it! You can decide to bind the class in 
+your `AppServiceProvider`, but if not, the client can easily be initialised in any `__invoke` or `__construct`
 ```php
 $client = new OddsClient(config('odds-api.api_key'));
 
@@ -45,9 +46,8 @@ $response = $client->setRegion('us')
 return $response->json();
 ```
 
-This package is setup in a way that all the params you may need are functions which can be chained together on one
-line, as they all return `$this`. Once you call one of the API endpoints which return a response, you can no longer call 
-these functions.
+This package is set up in a way that all the params you need can be built using chainable function helpers, as they all return `$this`. 
+Once you call one of the API endpoints which return a response, you can no longer call these function helpers.
 
 **Another way to define your Client Class**
 
@@ -60,12 +60,14 @@ $this->app->bind(OddsClient::class, function () {
 ```
 then your class may look like
 ```php
+use HandlesOddsResponse;
+
 public function __invoke(OddsClient $client): Response
 {
     $response = $client->setRegion('us')
         ->getOddsForSport(SportsEnum::RUGBYLEAGUE_NRL);
         
-    return $response->json();
+    return $this->extractJsonFromResponse($response);
 }
 ```
 
