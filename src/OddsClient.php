@@ -7,10 +7,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use SethSharp\OddsApi\Enums\SportsEnum;
 use GuzzleHttp\Exception\RequestException;
+use SethSharp\OddsApi\Traits\EventHelpers;
 use SethSharp\OddsApi\Traits\UseHandleHeaders;
 
 class OddsClient
 {
+    use EventHelpers;
     use UseHandleHeaders;
 
     private Client $client;
@@ -152,12 +154,16 @@ class OddsClient
     }
 
     /**
-     * @param string $eventId
+     * @param string|array $eventId
      * @return $this
      */
-    public function setEvent(string $eventId): self
+    public function setEvents(string|array $eventId): self
     {
-        $this->params['eventIds'] = $eventId;
+        if (is_array($eventId)) {
+            $this->params['eventIds'] = $this->buildEvents($eventId);
+        } else {
+            $this->params['eventIds'] = $eventId;
+        }
 
         return $this;
     }
