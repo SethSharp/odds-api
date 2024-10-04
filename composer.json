@@ -1,7 +1,7 @@
 {
     "name": "sethsharp/odds-api",
     "homepage": "https://github.com/SethSharp/odds-api",
-    "description": "This is a convenient composer wrapper for the odds-api. Currently in alpha with some basic endpoints",
+    "description": "This is a convenient composer wrapper for the odds-api.",
     "license": "MIT",
     "autoload": {
         "psr-4": {
