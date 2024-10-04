@@ -198,6 +198,7 @@ class OddsClient
      * Filters the response to show events that commence on and after this parameter. Values are in ISO8601 format
      *
      * @param string $time
+     * @param bool|null $isIsoFormat
      * @return $this
      */
     public function commenceTimeFrom(string $time, ?bool $isIsoFormat = false): self
@@ -215,6 +216,7 @@ class OddsClient
      * Filters the response to show events that commence on and before this parameter. Values are in ISO8601 format
      *
      * @param string $time
+     * @param bool|null $isIsoFormat
      * @return $this
      */
     public function commenceTimeTo(string $time, ?bool $isIsoFormat = false): self
