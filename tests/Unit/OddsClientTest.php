@@ -77,4 +77,98 @@ class OddsClientTest extends TestCase
 
         $this->assertEquals('0=sportsbet,1=tab,2=topsport', $oddsClient->getParams()['bookmakers']);
     }
+
+    public function testSetsEventsString()
+    {
+
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->setEvents('some-event');
+
+        $this->assertEquals('some-event', $oddsClient->getParams()['eventIds']);
+    }
+
+    public function testSetsEventsArray()
+    {
+
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->setEvents([
+            'event-1',
+            'event-2',
+            'event-3',
+        ]);
+
+        $this->assertEquals('event-1,event-2,event-3', $oddsClient->getParams()['eventIds']);
+    }
+
+    public function testSetsOddsFormat()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->oddsFormat('american');
+
+        $this->assertEquals('american', $oddsClient->getParams()['oddsFormat']);
+    }
+
+    public function testSetsDateFormat()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->dateFormat('unix');
+
+        $this->assertEquals('unix', $oddsClient->getParams()['dateForm']);
+    }
+
+    public function testCommenceTimeFromAndConvertsToIso()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->commenceTimeFrom('2024-05-10');
+
+        $this->assertEquals('2024-05-10T00:00:00Z', $oddsClient->getParams()['commenceTimeFrom']);
+    }
+
+    public function testCommenceTimeFrom()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->commenceTimeFrom('2024-05-10T00:00:00Z', isIsoFormat: true);
+
+        $this->assertEquals('2024-05-10T00:00:00Z', $oddsClient->getParams()['commenceTimeFrom']);
+    }
+
+    public function testCommenceTimeToAndConvertsToIso()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->commenceTimeTo('2024-05-10');
+
+        $this->assertEquals('2024-05-10T00:00:00Z', $oddsClient->getParams()['commenceTimeTo']);
+    }
+
+    public function testCommenceTimeTo()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->commenceTimeTo('2024-05-10T00:00:00Z', isIsoFormat: true);
+
+        $this->assertEquals('2024-05-10T00:00:00Z', $oddsClient->getParams()['commenceTimeTo']);
+    }
+
+    public function testCanAddCustomParams()
+    {
+        $oddsClient = new OddsClient('test-api-key');
+
+        $oddsClient->addParams([
+            'a-new-param' => 'some-value'
+        ]);
+
+        $this->assertEquals([
+            'api_key' => 'test-api-key',
+            'regions' => 'au',
+            'oddsFormat' => 'decimal',
+            'a-new-param' => 'some-value',
+        ], $oddsClient->getParams());
+    }
 }
