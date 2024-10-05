@@ -29,11 +29,15 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^3.2"
+        "pestphp/pest": "^3.2",
+        "orchestra/testbench": "^9.5"
     },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "scripts": {
+        "test": "pest"
     }
 }
