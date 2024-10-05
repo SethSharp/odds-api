@@ -43,6 +43,11 @@ class OddsClient
         return $this->apiEndpoint;
     }
 
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
     protected function get($endpoint): Response
     {
         try {
@@ -148,7 +153,7 @@ class OddsClient
             $bookmakerString = http_build_query($bookmakers, '', ',');
         }
 
-        $this->params['markets'] = $bookmakerString ?? $bookmakers;
+        $this->params['bookmakers'] = $bookmakerString ?? $bookmakers;
 
         return $this;
     }
