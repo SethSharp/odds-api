@@ -153,7 +153,7 @@ class OddsClient
             $bookmakerString = http_build_query($bookmakers, '', ',');
         }
 
-        $this->params['markets'] = $bookmakerString ?? $bookmakers;
+        $this->params['bookmakers'] = $bookmakerString ?? $bookmakers;
 
         return $this;
     }
