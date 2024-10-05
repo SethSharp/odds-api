@@ -26,5 +26,5 @@ jobs:
       - name: Install composer dependencies
         run: composer install --no-cache --no-ansi --no-interaction --no-progress
 
-      - name: Execute tests
-        run: ./vendor/bin/phpunit
+      - name: Execute pest tests
+        run: ./vendor/bin/pest

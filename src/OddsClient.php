@@ -159,10 +159,10 @@ class OddsClient
     }
 
     /**
-     * @param string|array $eventId
+     * @param mixed $eventId
      * @return $this
      */
-    public function setEvents(string|array $eventId): self
+    public function setEvents(mixed $eventId): self
     {
         if (is_array($eventId)) {
             $this->params['eventIds'] = $this->buildEvents($eventId);
