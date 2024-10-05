@@ -43,6 +43,11 @@ class OddsClient
         return $this->apiEndpoint;
     }
 
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
     protected function get($endpoint): Response
     {
         try {
