@@ -10,16 +10,11 @@ A convenient API wrapper for the Odds API, designed for Composer environments su
 ## About "The Odds API"
 [The Odds API](https://the-odds-api.com/) is a simple and very well-documented API, allowing for fast, low-cost integration. It covers over 70 sports and over 40 bookmakers - with a continuing expanding offering. The Odds API is an Australian company based in Melbourne since 2017.
 
-## So why make a wrapper
-A wrapper simplifies the usage and implementation of powerful APIs like "The Odds API" It abstracts the complexities of direct API interactions, providing a more user-friendly interface for us developers.
+## Why a Wrapper?
+A wrapper simplifies the usage and implementation of powerful APIs like "The Odds API". It abstracts the complexities of direct API interactions, providing a more user-friendly interface for us developers.
 
 # Contribution Guide
 This is an open-source project, so contributions are welcome! Whether you want to add new features, fix bugs, or improve documentation, your help is appreciated. Submit your PR for review and I will review them as soon as possible.
-
-**Sport Enum opportunity**
-This package uses an enum to define the sports you can pass to the endpoints, this ensures you don't make a typo or have
-to worry about remembering the exact grammar. Currently, there are only a couple sports so if you need the support for more,
-make a PR to add them in.
 
 # Steps for Installation
 ### Composer
@@ -34,12 +29,11 @@ php artisan vendor:publish --tag="odds-api-config"
 ```
 
 ### Example Usages
-You can simply create a new Client, passing in your api key and that's it! You can decide to bind the class in 
-your `AppServiceProvider`, but if not, the client can easily be initialised in any `__invoke` or `__construct`
+You can simply create a new Client, passing in your api key and that's it!
 ```php
 $client = new OddsClient(config('odds-api.api_key'));
 
-$response = $client->setRegion('us')
+$response = $client->setRegion('au')
     ->dateFormat('iso')
     ->getOddsForSport(SportsEnum::RUGBYLEAGUE_NRL);
 
@@ -86,8 +80,8 @@ This avoids having to define these on each request, but they can be overwritten 
 To help manage your quota, there are helpers that you can call to return the number of requests used and remaining. Checkout the `UseHandleHeaders` trait, which
 can be called on any `OddsClient` instant.
 
-Also, if this API ever becomes outdated for a small period of time, and you require to use new parameters, you can utilise
-the `addParams()` function, which accepts an array where you can pass any new parameters.
+Also, if this API ever becomes outdated for a small period of time and you need to add new parameters, you can utilise
+the `addParams()` function, which accepts an array.
 
 ## Credits
 - [Seth Sharp](https://github.com/SethSharp)
