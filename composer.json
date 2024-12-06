@@ -18,8 +18,7 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.8",
-        "nesbot/carbon": "^3.7",
-        "illuminate/support": "^11.26"
+        "nesbot/carbon": "^3.7"
     },
     "extra": {
         "laravel":{
@@ -30,7 +29,8 @@
     },
     "require-dev": {
         "pestphp/pest": "^3.2",
-        "orchestra/testbench": "^9.5"
+        "orchestra/testbench": "^9.5",
+        "illuminate/support": "^11.26"
     },
     "config": {
         "allow-plugins": {
