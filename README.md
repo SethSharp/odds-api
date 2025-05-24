@@ -46,7 +46,7 @@ Once you call one of the API endpoints which return a response, you can no longe
 **Another way to define your Client Class**
 
 You can bind your Client class at runtime in the AppServiceProvider. Allowing you to simply define the Client 
-in the constructor of your class, without having to constantly pass the api credentials.
+on the container (via the constructor of a class in Laravel), without having to constantly pass the api credentials.
 ```php
 $this->app->bind(OddsClient::class, function () {
     return new OddsClient(config('odds-api.api_key'));
