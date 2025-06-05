@@ -31,7 +31,8 @@ class OddsClient
         $this->client = new Client([
             'base_uri' => $this->apiEndpoint,
             'headers' => [
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'Accept-Encoding' => 'gzip',
             ]
         ]);
 
